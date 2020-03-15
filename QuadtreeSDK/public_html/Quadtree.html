@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: GameObject</title>
+    <title>Class: Quadtree.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,16 +17,20 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: GameObject</h1>
+    <h1 class="page-title">Class: Quadtree</h1>
 
     <section>
-    <header> <h2>GameObject</h2> </header>
+    <header> <h2>Quadtree</h2> </header>
     <article>
         <div class="container-overview">
-        <h4 class="name" id="GameObject"><span class="type-signature"></span>new GameObject<span class="signature">(renderableObj)</span><span class="type-signature"> &rarr; {<a href="GameObject.html">GameObject</a>}</span></h4>
+        <h4 class="name" id="Quadtree">
+            <span class="type-signature"></span>new Quadtree
+            <span class="signature">(maxBounds, maxObjs, maxDepth)</span>
+            <span class="type-signature"> &rarr; {<a href="Quadtree.html">Quadtree</a>}</span>
+        </h4>
     <div class="description">
         Default Constructor<p>
-        Abstracts a game object's behavior and apparance
+        The Quadtree class implements a spatial partitioning data structure that helps accelerate queries for nearby objects in the scene. It provides functions for core operations such as inserting objects, removing objects, clearing the quadtree, and getting objects near a specified area. The quadtree is made up of QNodes which can either be split and store 4 child nodes, or have no children but contain object references.
     </div>
         <h5>Parameters:</h5>
         <table class="params">
@@ -40,9 +44,7 @@
             <tbody>
                 <tr>
                     <td class="name"><code>renderableObj</code></td>
-                    <td class="type">
-                    <span class="param-type"><a href="Renderable.html">Renderable</a></span>
-                    </td>
+                    <td class="type"><span class="param-type"><a href="Renderable.html">Renderable</a></span></td>
                     <td class="description last">Renderable to assotiate to GameObject</td>
                 </tr>
             </tbody>
