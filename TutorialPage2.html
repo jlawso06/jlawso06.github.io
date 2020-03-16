@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/assets/coding.css">
+		<title>Tutorial 2</title>
+	</head>
+
+	<body>
+    	<div id="main-content">
+		<h1>QuadTree:<br>
+		Tutorial 2: Using the Quad Tree</h1>
+		<p align="center"><a href="TutorialPage1.html">Tutorial 1</a> &lt;-- Tutorial 2<br>
+		<hr>
+        
+	<h2>Introduction</h2>
+		<p>Now that we have the Tree created, we can begin adding objects and checking their neighbors.</p>
+        
+        <p>Source code for tutorials can be downloaded from <a href="../assets/sourcecode.zip">here</a>.</p>
+		<p align="center"><a href="#ide">Inserting Objects</a> • <a href="#components">Accessing Objects</a> • <a href="#stuff">Updating Objects</a></p>
+    
+        
+	<hr>
+		<h2><a id="ide"></a>Inserting objects</h2>
+        <p>It is recommended that you have all your objects in an easily accessible Array for inserting and checking. You insert your objects one at a time and in this example we do so with a for loop:</p>
+		</div><div id="wide-code"><figure><pre width=1000px>
+		this.mQuadTree = new Quadtree([-100, 100, -100, 100], 10, 10);
+		this.mObjectArray; //Already filled with objects
+		
+		for(var i = 0; i &lt; this.mObjectArray.length; i++){
+			this.mQuadTree.insert(this.mObjectArray[i]);
+		}
+        </figure></div>
+		<p>It's as simple as that, with the pre-defined information, all of the objects are in a specific location of the tree.</p>
+ 	<hr>       
+        <h2><a id="components"></a>Accessing objects for hit collision</h2>
+		<p>Now that the tree is filled, we can find objects for collision, we will be using our Array again to run through and grab nearby objects:</p>
+
+		</div><div id="wide-code"><figure><pre width=1000px>
+		for(var i = 0; i &lt; this.mObjectArray.length; i++){
+			var objects = Array.from(this.mQuadTree.getObjectsNear(this.mObjectArray[i]));
+			for(var j = 0; i &lt; objects.length; j++){
+				if(objects[j] !== this.mObjectArray[i] && this.mObjectArray[i].pixelTouches(objects[j])){
+					// Do Collision reaction
+				}
+			}
+		}
+        </figure></div>
+		
+		<hr>       
+        <h2><a id="stuff"></a>Updating Objects</h2>
+		<p>For moving objects, we need to update them within the tree so that they're always in the quadrant they're actually in. To do that we must remove then re-insert them into the tree.
+		 Depending on your scenario it may be more efficient to clear the tree entirely and re-insert everything, but otherwise you'd remove and insert anytime an object had a movement or size update.</p>
+
+		</div><div id="wide-code"><figure><pre width=1000px>
+		this.mQuadTree.clear()
+		for(var i = 0; i &lt; this.mObjectArray.length; i++){
+			this.mQuadTree.insert(this.mObjectArray[i]);
+		}
+		
+		// object #42 changed locations
+		this.mQuadTree.remove(this.mObjectArray[41]);
+		this.mQuadTree.insert(this.mObjectArray[42]);
+        </figure></div>
+        
+		<p>
+		Either way works, but since the implementation of QuadTree exists to save on time and energy, it's important to consider which way will be more efficient for your system. Additionally the easiest way to make sure things update 
+		would be to remove and insert the line after a position change or a size change.
+		</p>
+		
+        <hr>
+        <h2>Conclusion</h2>
+        <p>That's all there is to know about the main functionality of the Quad Tree and hopefully this tutorial helped.</p>
+        
+        
+        <hr>
+        <p align="center"><a href="TutorialPage2.html">Tutorial 1</a> &lt;-- Tutorial 2</p>
+    	</div>
+        <h4><i>3/16/2020</i> - CSS452</h4>
+	</body>
+</html>

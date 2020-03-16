@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/assets/coding.css">
+		<title>Tutorial 1</title>
+	</head>
+
+	<body>
+    	<div id="main-content">
+		<h1>Quad Tree:<br>
+		Tutorial 1: Setting Up the Quad Tree</h1>
+		<p align="center">Tutorial 1 --&gt; <a href="TutorialPage2.html">Tutorial 2</a><br>
+		<hr>
+        
+	<h2>Introduction</h2>
+		<p>The Quad Tree system is designed to be used in lue of basic collision checking, rather than checking every object with every object that could possibly collide in the entire world space. You can just check objects nearby for collisions.</p>
+        
+        <p>Source code for tutorials can be downloaded from <a href="../assets/sourcecode.zip">here</a>.</p>
+    
+        
+	<hr>
+		<h2><a id="ide"></a>Development Environment</h2>
+        <p>It is assumed that you have your development environment set up already to work with the GTCS Game Engine, if that's not the case, please follow the tutorial <a href="https://gamethemedgroup.github.io/GTCS-GameEngine/AdditionalMaterials/EngineAPITutorials/tutorial0/tutorial0.html">here</a>.</p>        
+ 	<hr>       
+        <h2><a id="components"></a>Entry Point</h2>
+		<h4>JavaScript Includes</h4>
+		<p>Be sure to have the QuadTree files included in your index.html which should look something like this:</p>
+
+		</div><div id="wide-code"><figure><pre width=1000px>
+
+        &lt;!-- Utilities --&gt;
+            &lt;script type="text/javascript" src="src/Engine/Utils/Transform.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="src/Engine/Utils/BoundingBox.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="src/Engine/Utils/Interpolate.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="src/Engine/Utils/InterpolateVec2.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="src/Engine/Utils/ShakePosition.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="src/Engine/Utils/CollisionInfo.js"&gt;&lt;/script&gt;
+		
+		&lt;script type="text/javascript" src="src/Engine/Utils/Quadtree/Quadtree.js"&gt;&lt;/script&gt;
+		&lt;script type="text/javascript" src="src/Engine/Utils/Quadtree/QNode.js"&gt;&lt;/script&gt;
+        </figure></div>
+        
+        <div id="main-content">
+		<h4>Setting it up in your level</h4>
+		<p>
+		In order for the Quad Tree to give you accurate information, the tree needs to have <b>all</b> objects you plan on having collision responses for.
+		In our case we created a ObjectManager.js file that deals with all objects created so we only have one file needing to update the Quad Tree on objects.
+		The Quad Tree can work with multiple files sending in objects, it just becomes more to worry about. Regardless you need to create the Quad Tree before it can be used:
+		</p>  
+           <div id="wide-code"><figure><pre width=1000px>
+			this.mQuadTree = new Quadtree([-100, 100, -100, 100], 10, 10);
+        </figure></div>
+		
+		<p>
+		For this specific QuadTree we've declared that the max boundaries of the World Space is (-100,-100) and (100,100) in a MinX MaxX MinY MaxY format, make sure to correctly define the boundaries of your world space
+		 otherwise the Quad Tree will not function properly. We've also decided that 10 is the max number of objects allowed to be in each quadrant of the world space, that means when the number is exceeded, the tree splits 
+		 that quadrant up into smaller quadrants until the limit is satisfied. Lastly we declared that the max depth of the tree is 10 meaning that no quadrant can be divided up more than 10 times, if this happens the tree will 
+		 ignore the max objects limit to follow the max depth limit.
+		</p>  
+		
+        <hr>
+        <h2>Conclusion</h2>
+        <p>Now that you've declared and defined your Quad Tree, it is ready to accept objects. In <a href="TutorialPage2.html">tutorial 2</a>, we will look at inserting objects and accessing them.</p>
+        
+        
+        <hr>
+        <p align="center">Tutorial 1 --&gt; <a href="TutorialPage2.html">Tutorial 2</a></p>
+    	</div>
+        <h4><i>3/16/2020</i> - CSS452</h4>
+	</body>
+</html>
