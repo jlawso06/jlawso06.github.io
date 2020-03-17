@@ -121,19 +121,19 @@ Demo2.prototype.draw = function () {
     gEngine.Core.clearCanvas([0.9, 0.9, 0.9, 1.0]); // clear to light gray
     this.mCamera.setupViewProjection();
     
-    // draw objects
-    for (var i = 0; i < this.mObjectArray.length; i++) {
-        this.mObjectArray[i].draw(this.mCamera);
-    }
-    
-    // draw cursor
-    this.mCursor.draw(this.mCamera);
-    
     // If borderlines are activated, draw them
     if(this.borderLinesActive === true) {
         for (var i = 0; i < this.borderLines.length; i++) {
             this.borderLines[i].draw(this.mCamera);
         };
+    }
+    
+    // draw cursor
+    this.mCursor.draw(this.mCamera);
+    
+    // draw objects
+    for (var i = 0; i < this.mObjectArray.length; i++) {
+        this.mObjectArray[i].draw(this.mCamera);
     }
 
 };
