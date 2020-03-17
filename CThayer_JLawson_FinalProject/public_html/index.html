@@ -66,6 +66,19 @@
         <script type="text/javascript" src="src/MyGame/MyGame.js"></script>
         <script type="text/javascript" src="src/MyGame/Demo2.js"></script>
         
+        <style> 
+            #Container {
+                position: absolute;
+                top: 8px;
+                left: 815px;
+                width: 360px;
+                height: 315px;
+                border: 3px;
+                border-style: groove;
+                padding: 5px;
+            } 
+        </style>
+        
     </head>
 
     <body onload="
@@ -80,12 +93,17 @@
         </canvas>
         
         <br>
-        <div id='UpdateFrame'></div>
-        <div id='UpdateObjects'></div>
-        <div id='Collisions'></div>
-        <div id='Controls'><b>Bouncing Objects Scene Controls</b><br> Q: Turn On/Off Quadtree Mode<br>Z: Turn On/Off Single Object Neighbors Visualization<br>L: Turn On/Off Quadtree Line Visualization<br>Space: Spawn More DyePacks<br>N: Change Scenes<br>
-        <b>Static Objects Tree Operations Scene Controls</b><br>WASD: Move "Cursor" Object <br>L: Turn On/Off Quadtree Line Visualization<br>N: Change Scenes<br>
+        
+        <div id="Container">
+            <div id='UpdateFrame'></div>
+            <div id='UpdateObjects'></div>
+            <div id='Collisions'></div>
+            <div id='Controls'>
+                <b>Bouncing Objects Scene Controls</b><br> Q: Turn On/Off Quadtree Mode<br>Z: Turn On/Off Single Object Neighbors Visualization<br>L: Turn On/Off Quadtree Line Visualization<br>N: Change Scenes<br>Space: Spawn More DyePacks<br><br>
+                <b>Static Objects Tree Operations Scene Controls</b><br>WASD: Move "Cursor" Object <br>E: Spawn object at current cursor location<br>L: Turn On/Off Quadtree Line Visualization<br>N: Change Scenes<br>
+            </div>
         </div>
+
         <hr>
         <script>
             var samples = 10;
@@ -131,7 +149,7 @@
                 }
                 var elm = document.getElementById("Collisions");
                 elm.innerHTML =
-                    "<b>Collision Checks (Avg): </b>" + avgCollisionChecks + "<br>";
+                    "<b>Collision Checks (Avg): </b>" + avgCollisionChecks + "<br><br>";
             };
         </script>
     </body>
